@@ -1,0 +1,116 @@
+AIM: WRITE A PROGRAM TO IMPLEMENT MEMORY MANAGEMENT SCHEME : FIRST BIT , BEST FIT
+THEORY:
+they both fixed and dynamic memory location scheme, the operating system must keep list of each memory location nothing which are
+free and which are buy, then as new job come into the system , the free partitions must be alllocated
+
+THESE PARTITIONS MAY BE ALLOACTED BY 3 WAYS:
+ 1. FIRST-FIT MEMORY ALLOCATION
+ 2.BEST-FIT MEMORY ALLOCATION
+ 3.WORST FIT MEMORY ALLOCATION
+ 
+ ADVANTAGES:
+ fastest algorithm because it searches as little as possible
+ DISADVANTAGE:
+ 
+ the remaining unused memory areas left after alloacation
+ become waste if its is two smaller thus request for larger memory requirement
+ cannot be accomplished
+ 
+ BEST-FIT::
+ the best fit deals with alloacating the smallest free partitions which 
+ meets the requirement of the requesting process
+ 
+ ADVANTAGES:
+ reduces the rate of production of small gap.
+ DISADVANTAGE:
+ if a process requiring larger memory arroives ata a later stage then it cannot be
+ accomdated as a larger role is already split and occupied.
+ PROGRAM:
+ #include<stdio.h>
+int main()
+{
+int frag[25],b[25],p[25],i,j,nb,np,temp,lowest=10000;
+int bf[25],ff[25]; 
+printf("\nEnter the number of blocks:");
+scanf("%d",&nb);
+printf("Enter the number of process:");
+scanf("%d",&np);
+printf("\nEnter the size of the blocks:-\n");
+for(i=1;i<=nb;i++)
+{
+printf("Block %d:",i);
+scanf("%d",&b[i]);
+}
+printf("Enter the size of the process :-\n");
+for(i=1;i<=np;i++)
+{
+printf("process %d:",i);
+scanf("%d",&p[i]);
+}
+
+for(i=1;i<=np;i++) 
+{
+for(j=1;j<=nb;j++) 
+{
+if(bf[j]!=1) 
+
+{
+temp=b[j]-p[i]; 
+if(temp>=0) 
+
+if(lowest>temp) 
+{
+ff[i]=j;
+lowest=temp;
+}
+}
+}
+frag[i]=lowest; 
+bf[ff[i]]=1; 
+lowest=10000;
+}
+printf("\nProcess No\tProcess Size \tBlock No\tBlock Size\tFragment");
+for(i=1;i<=np && ff[i]!=0;i++) 
+printf("\n%d\t\t%d\t\t%d\t\t%d\t\t%d",i,p[i],ff[i],b[ff[i]],frag[i]);
+return 0;
+}
+
+FOR FIRST FIT 
+
+
+#include<stdio.h>
+int main(){
+int p,m;
+
+printf("Enter number of processes:");
+scanf("%d",&p);
+printf("Enter number of Memory blocks:");
+scanf("%d",&m);
+int sizeprocess[10],sizememory[10],i;
+for(i=0;i<p;i++)
+{
+printf("Enter size of process %d:",i);
+scanf("%d", &sizeprocess[i]);
+}
+for(i=0;i<m;i++)
+{
+printf("Enter size of memory %d:", i);
+scanf("%d", &sizememory[i]);
+}
+int j;
+for(i=0;i<p;i++){
+for(j=0;j<m;j++)
+{
+if(sizememory[j]>=sizeprocess[i])
+{
+sizememory[j]=sizememory[j]-sizeprocess[i];
+printf("Allocating process %d to memory %d\n Size remaining in it after allocation %d\n\n",i,j,sizememory[j]);
+break;
+}
+}
+if(j==m)
+{
+printf("Not enough memory for process %d",i);
+break;
+}
+}
