@@ -1,0 +1,21 @@
+AIM: 8 BIT NO. POSITIVE OR NEGATIVE
+
+.model small
+.data
+m db "Hi$"
+positive db "Number is Positive$"
+negative db "Number is Negative$"
+.code
+START:
+mov ax, @data
+mov ds, ax
+mov al, 0FBH
+and al, 80H
+jz post
+lea ax, negative
+jmp ans
+post: lea dx, positive
+ans: mov ah, 09H
+int 21H
+mov ah, 4ch
+end start
