@@ -1,0 +1,43 @@
+AIM: SHIFT AND ROATATE
+FOR SHIFT
+.model small
+.stack 100h
+.data
+a dw 0A123h
+b db 02h
+.code
+start:
+ mov AX, @data
+ mov DS, AX
+ mov BX, a
+ mov CL, b
+ sal BX, CL
+ shl BX, CL
+ sar BX, CL
+ int 21H
+ mov Ah, 4ch
+ int 3H
+ end start
+ end code
+ 
+ FOR ROTATE
+ 
+ .model small
+.stack 100h
+.data
+a dw 0FA1EH
+b db 01H
+.code
+start: 
+ mov AX, @data
+ mov DS, AX
+ mov AX, a
+ rol ax,a
+ rcl ax,01
+ ror ax,01
+ rcr ax,01
+ int 21H
+ mov Ah, 4ch
+ int 3H
+ end 
+ 
