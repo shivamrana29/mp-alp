@@ -1,0 +1,39 @@
+AIM: DIVISION INSTRUCTIONB FOR IDIV AND DIV
+
+PROGRAM:
+
+Signed
+.model small
+.stack 100h
+.data
+a dw 0008H
+b db 31H
+.code
+start:
+ mov AX, @data
+ mov DS, AX
+ mov AX, a
+ idiv b
+ int 21H
+ mov AH, 4cH
+ int 3H
+end start
+end code
+
+Unsigned
+.model small
+.stack 100h
+.data
+a dw 2121H
+b db 31H
+.code
+start:
+ mov AX, @data
+ mov DS, AX
+ mov AX, a
+ div b
+ int 21H
+ mov AH, 4cH
+ int 3H
+end start
+end code
