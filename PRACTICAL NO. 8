@@ -1,0 +1,22 @@
+AIM:DEVELOP A PROGRAM TO TRANSFER 10 BYTES OF MEMORY BANK TO ANOTHER MEMORY BANK
+
+model small
+.data
+array db 'abcdefghij&'
+array 2db 10 dup()
+.code
+mov AX, @Data
+mov DS, AX
+mov CL, 0BH
+mov BX, 0000H
+aa :mov al 'array'[bx]
+mov array2 [bx] ,al
+inc bx
+loop aa
+lea dx,array2
+mov ab,09h
+int 21h
+mov ah,4ch
+int21h
+end start
+end
