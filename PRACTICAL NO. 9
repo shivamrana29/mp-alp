@@ -1,0 +1,20 @@
+AIM: FACTORIAL OF GIVEN NO.
+
+.model small
+.data
+a db 05h
+.code
+mov AX, @Data
+mov DS, AX
+mov AX, 0001H
+mov CL, A
+ CMP CX, 000
+ JZ XX
+ again:
+ MUL CX
+ DEC AX
+ JNZ AGAIN
+ XX: MOV[DI] ,AX
+int 03H
+END START
+END
