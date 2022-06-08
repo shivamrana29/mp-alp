@@ -1,0 +1,43 @@
+AIM: MULTIPLICATION INSTRUCTION
+
+
+FOR MUL:
+8-Bit Unsigned
+.model small
+.stack 100h
+.data
+a db 02H
+b db 03H
+.code
+start:
+ mov AX, @data
+ mov DS, AX
+ mov AL, a
+ mov BL, b
+ mul b
+ int 21H
+ mov Ah, 4ch
+ int 3H
+end start
+end code
+
+
+FOR IMUL:
+8-Bit Signed
+.model small
+.stack 100h
+.data
+a db 02H
+b db 03H
+.code
+start:
+ mov AX, @data
+ mov DS, AX
+ mov AL, a
+ mov BL, b
+ imul BL
+ int 21H
+ mov Ah, 4ch
+ int 3H
+end start
+end code
